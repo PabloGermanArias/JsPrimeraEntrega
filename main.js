@@ -21,8 +21,7 @@ function buscarProducto(){
 
     if(resultado.length >0){
         console.table(resultado)
-    }
-    else{
+    }   else{
         alert ("no se encontro resultado de " + queBuscas)
         let respuesta= confirm("Desea agregarlo al listado?")
 
@@ -52,30 +51,30 @@ let producto = new Producto( nombre,precio, stock)
 } 
 
 function mostrarMenu() {
-    alert("¡Bienvenido al sistema de gestión de productos!\n\nSeleccione una opción:\n\n1. Buscar Producto\n2. Agregar Producto\n3. Mostrar Listado");
+    alert("¡Bienvenido al sistema de gestión de productos!\n\nSeleccione una opción:\n\n1. Buscar Producto\n2. Agregar Producto\n3. Mostrar Listado")
 
-    let opcion = prompt("Ingrese el número de la opción que desea:");
+    let opcion = prompt("Ingrese el número de la opción que desea:")
 
     switch (opcion) {
         case "1":
-            buscarProducto();
-            break;
+            buscarProducto()
+            break
         case "2":
-            crearProducto();
-            break;
+            crearProducto()
+            break
         case "3":
-            mostrarListado();
-            break;
+            mostrarListado()
+            break
         default:
-            alert("Opción no válida. Por favor, elija 1, 2 o 3.");
+            alert("Opción no válida. Por favor, elija 1, 2 o 3.")
             mostrarMenu();
-            break;
+            break
     }
 }
 
 function mostrarListado() {
-    console.table(listado);
+    console.table(listado)
 }
 
-mostrarMenu();
+mostrarMenu()
     
