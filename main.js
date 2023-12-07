@@ -69,7 +69,7 @@ botonGuardar.addEventListener("click", () => {
         inputNombre.value = ""
         inputPrecio.value = ""
         inputStock.value = ""
-        alert("Producto agregado correctamente")
+        Swal.fire("Producto agregado correctamente");
         mostrardato2.innerHTML = ""
         mostrarDato.innerHTML = ""
 
