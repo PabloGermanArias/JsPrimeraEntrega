@@ -35,14 +35,21 @@ let mostrarDato = document.getElementById("mostrarInput")
 boton.addEventListener("click", () => {
     let dato = valorIngresado.value.toUpperCase();
 
-    let resultado = listado.filter((x) => x.nombre.toUpperCase().includes(dato))
+    let resultados = listado.filter((x) => x.nombre.toUpperCase().includes(dato));
 
-    if (resultado.length > 0) {
-        mostrarDato.innerHTML = resultado.map((x) => x.nombre).join(', ')
+    if (resultados.length > 0) {
+        mostrarDato.innerHTML = resultados.map((producto) => {
+            return `<div>
+                        <p>Nombre: ${producto.nombre}</p>
+                        <p>Precio: ${producto.precio}</p>
+                        <p>Stock: ${producto.stock}</p>
+                    </div>`
+        }).join('')
     } else {
         mostrarDato.innerHTML = "No se encontraron resultados"
     }
 })
+
 // declaramos las variables para guardar productos
 
 let inputNombre = document.getElementById("inputNombre")
@@ -72,4 +79,4 @@ botonGuardar.addEventListener("click", () => {
     } else {
         mostrardato2.innerHTML = "Por favor, ingrese valores válidos para agregar un producto."
     }
-})
+}) 
