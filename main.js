@@ -1,4 +1,3 @@
-// declaramos las variables en la busqueda de producto
 
 const Producto = function(nombre, precio, stock) {
     this.nombre = nombre
@@ -12,12 +11,10 @@ let producto3 = new Producto("Ibuprofeno 600mg", 1200, 300)
 
 let listado = [producto1, producto2, producto3]
 
-// Función para guardar la lista en localStorage
 function guardarListaEnLocalStorage() {
     localStorage.setItem('productos', JSON.stringify(listado))
 }
 
-// Función para cargar la lista desde localStorage al cargar la página
 function cargarListaDesdeLocalStorage() {
     const storedListado = localStorage.getItem('productos')
     if (storedListado) {
@@ -25,7 +22,6 @@ function cargarListaDesdeLocalStorage() {
     }
 }
 
-// Cargar lista desde localStorage al cargar la página
 cargarListaDesdeLocalStorage();
 
 let valorIngresado = document.getElementById("input")
@@ -50,8 +46,6 @@ boton.addEventListener("click", () => {
     }
 })
 
-// declaramos las variables para guardar productos
-
 let inputNombre = document.getElementById("inputNombre")
 let inputPrecio = document.getElementById("inputPrecio")
 let inputStock = document.getElementById("inputStock")
@@ -60,8 +54,8 @@ let mostrardato2 = document.getElementById("mostrardato2")
 
 botonGuardar.addEventListener("click", () => {
     let nuevoNombre = inputNombre.value;
-    let nuevoPrecio = parseFloat(inputPrecio.value);
-    let nuevoStock = parseInt(inputStock.value);
+    let nuevoPrecio = parseFloat(inputPrecio.value)
+    let nuevoStock = parseInt(inputStock.value)
 
     if (nuevoNombre && !isNaN(nuevoPrecio) && !isNaN(nuevoStock)) {
         let nuevoProducto = new Producto(nuevoNombre, nuevoPrecio, nuevoStock)
@@ -73,10 +67,32 @@ botonGuardar.addEventListener("click", () => {
         mostrardato2.innerHTML = ""
         mostrarDato.innerHTML = ""
 
-        // Guardar lista actualizada en localStorage
         guardarListaEnLocalStorage()
 
     } else {
         mostrardato2.innerHTML = "Por favor, ingrese valores válidos para agregar un producto."
     }
 }) 
+
+function mostrarHoraActual() {
+    const mostrarHora = document.getElementById("mostrarHora");
+
+    function actualizarHora() {
+        fetch("http://worldtimeapi.org/api/ip")
+            .then(response => response.json())
+            .then(data => {
+                const hora = data.datetime.slice(11, 19)
+                mostrarHora.innerHTML = `<p>Hora actual: ${hora}</p>`
+            })
+            .catch(error => {
+                console.error("Error al obtener la hora:", error)
+            });
+    }  
+    actualizarHora()
+    setInterval(actualizarHora, 1000)
+}
+
+mostrarHoraActual()
+
+
+
